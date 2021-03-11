@@ -3,25 +3,17 @@
 import { Entity, Column, OneToMany } from 'typeorm';
 
 import { Base } from './Base';
+import { Board } from './Board';
 import { Employment } from './Employment';
 
 @Entity()
-export class User extends Base {
+export class Project extends Base {
   @Column()
-  firstName: string;
+  name: string;
 
-  @Column()
-  lastName: string;
-
-  @Column()
-  email: string;
-
-  @Column()
-  password: string;
-
-  @Column()
-  authenticationToken: string;
-
-  @OneToMany(() => Employment, (employment) => employment.user)
+  @OneToMany(() => Employment, (employment) => employment.project)
   employments: Employment[];
+
+  @OneToMany(() => Board, (board) => board.project)
+  boards: Board[];
 }
